@@ -193,7 +193,7 @@ const calculateTax = (subtotal: number, country: string) => {
 };
 
 // Stripe Checkout Component
-function CheckoutForm({ total, currency, country, onSuccess }: { total: number; currency: string; country: string; onSuccess: () => void }) {
+function CheckoutForm({ total, currency, country, address, onSuccess }: { total: number; currency: string; country: string; address: string; onSuccess: () => void }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -512,7 +512,7 @@ export default function Cart() {
       return;
     }
     setDiscount(validation.percentage);
-    toast.success(`Discount ${validation.percentage}% activated!`);
+    toast.success(`Discount ${validation.percentage}% applied!`);
   };
 
   const handleCheckout = async () => {
@@ -782,7 +782,7 @@ export default function Cart() {
             </Card>
 
             {/* Shipping */}
-            <Card className="bg-white/5 backdrop-blur-md border-amber-500/20">
+            <Card className="bg-white/5 backdrop-blur-md border-amber-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2 text-sm">
                   <Truck className="h-4 w-4 text-amber-400" /> Delivery
@@ -849,7 +849,7 @@ export default function Cart() {
             </Card>
 
             {/* Currency Selector */}
-            <Card className="bg-white/5 backdrop-blur-md border-amber-500/20">
+            <Card className="bg-white/5 backdrop-blur-md border-amber-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2 text-sm">
                   <DollarSign className="h-4 w-4 text-amber-400" /> Currency
@@ -872,7 +872,7 @@ export default function Cart() {
             </Card>
 
             {/* Payment Method */}
-            <Card className="bg-white/5 backdrop-blur-md border-amber-500/20">
+            <Card className="bg-white/5 backdrop-blur-md border-amber-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2 text-sm">
                   <CreditCard className="h-4 w-4 text-amber-400" /> Payment
@@ -918,7 +918,7 @@ export default function Cart() {
             </Card>
 
             {/* Gift Options */}
-            <Card className="bg-white/5 backdrop-blur-md border-amber-500/20">
+            <Card className="bg-white/5 backdrop-blur-md border-amber-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2 text-sm">
                   <Gift className="h-4 w-4 text-amber-400" /> Gift Options
@@ -951,7 +951,7 @@ export default function Cart() {
             </Card>
 
             {/* Contact Info */}
-            <Card className="bg-white/5 backdrop-blur-md border-amber-500/20">
+            <Card className="bg-white/5 backdrop-blur-md border-amber-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2 text-sm">
                   <User className="h-4 w-4 text-amber-400" /> Contact
