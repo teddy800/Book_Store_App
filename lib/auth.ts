@@ -13,7 +13,7 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    // Add Credentials, GitHub, etc. here
+    // Add more providers here
   ],
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET!,
