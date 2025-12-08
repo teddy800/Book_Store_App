@@ -1,5 +1,6 @@
+// lib/auth.ts
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import Google from 'next-auth/providers/google';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
 
@@ -8,28 +9,20 @@ const prisma = new PrismaClient();
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GoogleProvider({
+    Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    // Add others (e.g., Credentials for email/password)
+    // Add Credentials, GitHub, etc. here
   ],
-  session: {
-    strategy: 'jwt', // Use JWT for client-side
-  },
+  session: { strategy: 'jwt' },
+  secret: process.env.NEXTAUTH_SECRET!,
   callbacks: {
     session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.sub as string;
-      }
+      if (token.sub) session.user.id = token.sub;
       return session;
     },
   },
-  pages: {
-    signIn: '/auth/signin', // Custom sign-in page if needed
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  trustHost: true, // For Vercel/Netlify
 };
 
 export default NextAuth(authOptions);

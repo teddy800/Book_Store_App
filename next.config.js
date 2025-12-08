@@ -1,10 +1,10 @@
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
-  // Remove or comment out 'output: 'export'' for SSR/API support
-  // output: 'export', // Comment this out
-  trailingSlash: true, // Keeps URLs clean
-  images: {
-    unoptimized: true, // For static images if needed
+  // output: 'export',   ← DELETE THIS LINE COMPLETELY
+  images: { unoptimized: true },
+  // Optional: silence Turbopack warning
+  turbopack: {
+    root: __dirname,
   },
 };
 
